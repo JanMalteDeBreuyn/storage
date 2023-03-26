@@ -1,49 +1,75 @@
 
+
 function pageEnter(){
     let t1Header = gsap.timeline({
     scrollTrigger: {
-      trigger: ".section-header-about",
+      trigger: ".section-header-home",
       start: "top top",
       top: "bottom top",
       scrub: 1
     }
   });
-  t1Header.to(".header-about_01", {
-    yPercent: -40
-  })
-  t1Header.to(".header-about_02", {
-    yPercent: -30
-  }, 0)
-  t1Header.to(".header-about_03", {
+  t1Header.to(".header-home_left", {
     yPercent: -20
+  })
+  t1Header.to(".header-home_right", {
+    yPercent: -10
   }, 0);
 
- $(".marque").each(function (index) {
+
+
+// Spiral Service
   let trigger = $(this);
   let marqueLeft = $(this).find(".marque_move-left");
   let marqueRight = $(this).find(".marque_move-right");
 
-  let t1 = gsap.timeline({
+  let t1Marque = gsap.timeline({
     scrollTrigger: {
-      trigger: trigger,
+      trigger: ".marque",
       start: "top bottom",
-      top: "bottom top",
+      end: "bottom top",
       scrub: 1
     }
   });
-  t1.fromTo(marqueLeft, {
-    xPercent: -15
+  t1Marque.fromTo(".marque_move-left", {
+    xPercent: -16
   }, {
-     xPercent: -20,
+     xPercent: -23,
     duration: 1
   });
   
-  t1.fromTo(marqueRight, {
-    xPercent: -30
+  t1Marque.fromTo(".marque_move-right", {
+    xPercent: -28
   },{
-  	xPercent: -25,
+  	xPercent: -22,
     duration: 1
   }, 0);
-});
+
+  let t1MarqueScreens = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".marque-screens",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: 1
+    }
+  });
+  
+  t1MarqueScreens.fromTo(".screen-left", {
+    x:"random(-100, -50)",
+    y:"random(20, 40)"
+  }, {
+    x:"random(-150, -200)",
+    y:"random(-20, -40)",
+    duration: 1
+  });
+  
+  t1MarqueScreens.fromTo(".screen-right", {
+    x:"random(-200, -250)",
+    y:"random(20, 40)"
+  },{
+  	x:"random(-100, -50)",
+    y:"random(-20, -40)",
+    duration: 1
+  }, 0);
 }
 pageEnter();
