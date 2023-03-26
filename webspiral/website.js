@@ -8,8 +8,8 @@ gsap.set("html, body", {scrollBehavior: "auto"});
   });
   
   
-  // Navigation Open
-  gsap.set(".navigation-fullscreen-wrapper", {
+// Navigation Open
+gsap.set(".navigation-fullscreen-wrapper", {
     autoAlpha: 0,
 })
 gsap.set(".navigation-close", {
@@ -61,6 +61,8 @@ $(".navigation-close").click(function() {
     smoother.paused(false);
 });
 
+
+// website Enter
 function websiteEnter(){
 
   // Navigation on scroll
@@ -127,6 +129,8 @@ function websiteEnter(){
 }
 websiteEnter();
 
+
+// Barba JS
   barba.init({
     transitions: [{
       name: 'opacity-transition',
