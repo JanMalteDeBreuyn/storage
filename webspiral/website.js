@@ -129,6 +129,16 @@ function websiteEnter(){
 }
 websiteEnter();
 
+// Webflow interactions reset
+function resetWebflow(data) {
+  let parser = new DOMParser();
+  let dom = parser.parseFromString(data.next.html, "text/html");
+  let webflowPageId = $(dom).find("html").attr("data-wf-page");
+  $("html").attr("data-wf-page", webflowPageId);
+  window.Webflow && window.Webflow.destroy();
+  window.Webflow && window.Webflow.ready();
+  window.Webflow && window.Webflow.require("ix2").init();
+}
 
 // Barba JS
   barba.init({
@@ -136,11 +146,12 @@ websiteEnter();
       name: 'opacity-transition',
       enter(data) {
 
+        
         gsap.to(data.current.container, {
           opacity: 0,
           duration: 1
         });
-
+        resetWebflow(transitionData);
         $(data.next.container).addClass("is-fixed");
 
         return gsap.from(data.next.container, {
