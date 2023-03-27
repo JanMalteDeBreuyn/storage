@@ -147,7 +147,7 @@ barba.init({
     leave(data) {
       return gsap.to(data.current.container, {
         opacity: 0,
-        duration 0.5
+        duration: 0.5
       });
     },
     enter(data) {
