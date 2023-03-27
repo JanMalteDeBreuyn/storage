@@ -140,45 +140,43 @@ function resetWebflow(data) {
   window.Webflow && window.Webflow.require("ix2").init();
 }
 
-// Barba JS
-  barba.init({
-    transitions: [{
-      name: 'opacity-transition',
-      leave() {
-        gsap.to(data.current.container, {
-          opacity: 0,
-          duration: 0.5
-        });
-      },
-      enter() {
-        resetWebflow(transitionData);
-        $(data.next.container).addClass("is-fixed");
 
-        return gsap.from(data.next.container, {
-          opacity: 0,
-          duration: 1,
-          onComplete: () => {
-              $(window).scrollTop(0);
-              $(data.next.container).removeClass("is-fixed");
-              
-              // Get the current ScrollSmoother instance and 'reset' it
-              var sm = ScrollSmoother.get();
-              sm.scrollTo(0);
-              sm.kill();
+barba.init({
+  transitions: [{
+    name: 'opacity-transition',
+    leave(data) {
+      return gsap.to(data.current.container, {
+        opacity: 0,
+        duration 0.5
+      });
+    },
+    enter(data) {
+      resetWebflow(transitionData);
 
-              // Recreating the ScrollSmoother
-              ScrollSmoother.create({
-                smooth: 1,               // how long (in seconds) it takes to "catch up" to the native scroll position
-                effects: true,           // looks for data-speed and data-lag attributes on elements
-                smoothTouch: 0.1,        // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-              });
+      return gsap.from(data.next.container, {
+        opacity: 0,
+        duration: 1
+        onComplete: () => {
+          $(window).scrollTop(0);
+          $(data.next.container).removeClass("is-fixed");
+          
+          // Get the current ScrollSmoother instance and 'reset' it
+          var sm = ScrollSmoother.get();
+          sm.scrollTo(0);
+          sm.kill();
 
-              // Restart functions
-              websiteEnter();
-              pageEnter();
-          }
-        });
-        
+          // Recreating the ScrollSmoother
+          ScrollSmoother.create({
+            smooth: 1,               // how long (in seconds) it takes to "catch up" to the native scroll position
+            effects: true,           // looks for data-speed and data-lag attributes on elements
+            smoothTouch: 0.1,        // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+          });
+
+          // Restart functions
+          websiteEnter();
+          pageEnter();
       }
-    }]
-  });
+      });
+    }
+  }]
+});
