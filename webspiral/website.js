@@ -144,13 +144,13 @@ function resetWebflow(data) {
   barba.init({
     transitions: [{
       name: 'opacity-transition',
-      enter(data) {
-
-        
+      leave() {
         gsap.to(data.current.container, {
           opacity: 0,
-          duration: 1
+          duration: 0.5
         });
+      },
+      enter() {
         resetWebflow(transitionData);
         $(data.next.container).addClass("is-fixed");
 
@@ -178,6 +178,7 @@ function resetWebflow(data) {
               pageEnter();
           }
         });
+        
       }
     }]
   });
