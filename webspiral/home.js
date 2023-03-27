@@ -19,13 +19,14 @@ function pageEnter(){
 
 
 // Spiral Service
+$(".marque").each(function (index) {
   let trigger = $(this);
   let marqueLeft = $(this).find(".marque_move-left");
   let marqueRight = $(this).find(".marque_move-right");
 
   let t1Marque = gsap.timeline({
     scrollTrigger: {
-      trigger: ".marque",
+      trigger: trigger,
       start: "top bottom",
       end: "bottom top",
       scrub: 1

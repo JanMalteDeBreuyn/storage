@@ -174,7 +174,7 @@ barba.init({
           websiteEnter();
           pageEnter();
           resetWebflow(transitionData);
-      }
+        }
       });
     }
   }]
