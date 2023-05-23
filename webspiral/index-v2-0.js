@@ -45,7 +45,7 @@ function resetAnimations(data) {
         0
       )
       .to(
-        icon,
+        $(this).find(".floating-icon"),
         {
           opacity: 0,
           duration: 0.8,
