@@ -106,16 +106,11 @@ const animPageEnter = function () {
  * Barba
  */
 
-barba.hooks.leave(() => {
-  console.log("Leave");
-});
-
 barba.hooks.afterLeave(() => {
   killScrollTriggers();
 });
 
 barba.hooks.enter((data) => {
-  console.log("Enter");
   window.scrollTo(0, 0);
   smootherInit();
   let transitionData = data;
